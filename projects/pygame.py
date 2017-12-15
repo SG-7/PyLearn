@@ -32,17 +32,22 @@ while not gameExit:
         if event.type == pygame.KEYDOWN:  # Movement
             if event.key == pygame.K_LEFT:
                 lead_x_change = -10
-            if event.key == pygame.K_RIGHT:
+                lead_y_change = 0
+            elif event.key == pygame.K_RIGHT:
                 lead_x_change = 10
-            if event.key == pygame.K_UP:
+                lead_y_change = 0
+            elif event.key == pygame.K_UP:
                 lead_y_change = -10
-            if event.key == pygame.K_DOWN:
+                lead_x_change = 0
+            elif event.key == pygame.K_DOWN:
                 lead_y_change = 10
+                lead_x_change = 0
+        if lead_x >= 800 or lead_x < 0 or lead_y >= 600 or lead_y < 0:  # All logic points to gameExit.
+            gameExit = True
 
     # Logic Block
     lead_x += lead_x_change
     lead_y += lead_y_change
-
     gameDisplay.fill(white)  # Fills the window with the color white.
     pygame.draw.rect(gameDisplay, black, [lead_x, lead_y, 10, 10])  # Adds a black square at the specified coordinates.
     pygame.display.update()  # Tells the display to update and show our graphics.
